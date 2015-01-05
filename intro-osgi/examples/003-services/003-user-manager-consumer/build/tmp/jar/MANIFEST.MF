@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: 003-services.003-user-manager-consumer
+Bundle-SymbolicName: 003-services.003-user-manager-consumer
+Bundle-Version: 3.0.0.201412301228
+Created-By: 1.8.0_05 (Oracle Corporation)
+Import-Package: com.liferay.osgi.workshop.user.manager.provider;version=
+ "[3.0,4)"
+Private-Package: com.liferay.osgi.workshop.user.manager.consumer
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Service-Component: OSGI-INF/com.liferay.osgi.workshop.user.manager.consu
+ mer.UserManagerConsumer.xml
+Tool: Bnd-2.4.0.201411031534

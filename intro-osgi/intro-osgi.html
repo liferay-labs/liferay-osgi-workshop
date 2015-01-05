@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+
+	<title>OSGi fundamentals</title>
+	
+	<!-- Required stylesheet -->
+	<link rel="stylesheet" href="core/deck.core.css">
+	
+	 <!-- fonts -->
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic|PT+Sans+Narrow:400,700|Ubuntu+Mono:400,700' type='text/css'>
+
+	<link rel="stylesheet" href="extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="extensions/status/deck.status.css">
+	<link rel="stylesheet" href="extensions/hash/deck.hash.css">
+	<link rel="stylesheet" href="extensions/scale/deck.scale.css">
+
+	<!-- Style theme. More available in /themes/style/ or create your own. -->
+	<link rel="stylesheet" href="themes/style/web-2.0.css">
+	
+	<link rel="stylesheet" id="transition-theme-link" href="themes/transition/fade.css">   
+    <link rel="stylesheet" id="style-theme-link" href="liferay.css">
+	
+	<script src="jquery-1.7.2.min.js"></script>
+    <script src="modernizr.custom.js"></script>
+    <script src="core/deck.core.js"></script>
+    <script src="extensions/hash/deck.hash.js"></script>
+    <script src="extensions/menu/deck.menu.js"></script>
+    <script src="extensions/goto/deck.goto.js"></script>
+    <script src="extensions/status/deck.status.js"></script>
+
+    <link rel="stylesheet" href="solarized_light.css">
+    <script src="highlight.pack.js"></script>
+
+   <script>
+    $(document).ready(function() {
+            $.deck('.slide');
+            $('pre').each(function(i, e) {
+                    hljs.highlightBlock(e, '  ');
+            });
+            $('code').each(function(i, e) {
+                    hljs.highlightBlock(e);
+            });
+    });
+    </script>
+</head>
+
+<body class="deck-container">
+
+<p class="deck-status">slide <span class="deck-status-current"></span> / <span class="deck-status-total"></span></p>
+
+<section class="slide" style="font-size: 100%">
+   <h1>
+    <div>OSGi fundamentals</div>
+    <div style="font-size: 38%">A quick look to the OSGi basics</div>
+    <br/>
+    <div style="font-size: 50%">Miguel Ángel Pastor Olivar</div>
+    <div style="font-size: 50%">miguel.pastor@liferay.com</div>
+    <div style="font-size: 50%">Twitter handler: <a href="http://twitter.com/miguelinlas3">miguelinlas3</a></div>
+    <div style="font-size: 50%"><br/></div>
+   </h1>
+</section>
+
+<section class="slide" style="margin-left:11%">
+	<h2>A little bit about me</h2>
+	<ul>
+		<div class="slide">
+			<li>Liferay platform infrastructure lead</li>
+		</div>			
+		<div class="slide">
+			<li>Cloud computing and distributed systems</li>
+		</div>		
+		<div class="slide">
+			<li>Interests in concurrent and distributed programming. Functional programming advocate!
+		</div>
+		<div class="slide">
+			<li>PHD student? (on standby for a while)</li>
+		</div>		
+		<div class="slide">
+			<li>Twitter handler: <a href="http://twitter.com/miguelinlas3">miguelinlas3</a></li>
+		</div>
+		<div class="slide">
+			<li>Email address:  miguel.pastor@liferay.com</li>
+		</div>		
+	</ul>
+</section>
+
+<section class="slide">
+	<h1>What will we talking about on this lesson?</h1>
+</section>
+
+<section class="slide" style="margin-left:11%">
+	<h2>Agenda</h2>
+		<div class="slide">	
+			<li>What is OSGi?</li>
+		</div>
+		<div class="slide">	
+			<li>A quick tour through the main fundamentals</li>
+		</div>
+		<div class="slide">	
+			<li>Practical examples</li>
+		</div>
+		<div class="slide">
+			<li>Questions and answers</li>
+		</div>
+	</ul>
+</section>
+
+<section class="slide">
+	<h1>
+		OSGi fundamentals
+		<div style="font-size: 50%">Quick tour over the basics</div>
+	</h1>
+</section>
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Architecture</h2>				
+		<div class="slide">
+			<img src="images/layering-osgi.png" alt="OSGI layers diagram">
+		</div>
+	</div>
+</section>
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Bundles</h2>
+		<div class="slide">
+			<h3>Deployment unit</h3>
+		</div>
+		<div class="slide">
+			<h3>Regular JAR file</h3>
+		</div>
+		<div class="slide">
+			<h3>Metadata defined in <b>META-INF/MANIFEST.MF</b></h3>
+		</div>
+	</div>
+	<div class="slide" style="margin-left:11%">
+		<h2>Execution Environment</h2>
+		<div class="slide">
+			<h3>Defines what methods and classes are available in a specific platform</h3>
+		</div>
+	</div>
+	<div class="slide" style="margin-left:11%">
+		<h2>Security</h2>
+		<div class="slide">
+			<h3>Deal will all the security related aspects</h3>
+		</div>
+	</div>
+</section>
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Lifecycle</h2>
+		<div class="slide">
+			<h3>API to install, start, stop, update and remove bundles</h3>
+		</div>
+		<div class="slide">
+			<h3>Well defined in the specs</h3>
+		</div>
+		<div class="slide">
+			<img src="images/bundle-lifecycle.png" alt="Bundle Lifecycle">
+		</div>
+	</div>
+</section>
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Modules</h2>
+		<div class="slide">
+			<h3>Represented through the Bundle concept</h3>
+		</div>
+		<div class="slide">
+			<h3>Everything is hidden by default. No sharing</h3>
+		</div>
+		<div class="slide">
+			<h3>Every module needs to import its needs</h3>
+		</div>
+		<div class="slide">
+			<h3>Enables the Services model</h3>
+		</div>
+	</div>
+	<div class="slide" style="margin-left:11%">
+		<h2>Services</h2>
+		<div class="slide">
+			<h3>Real power of OSGi</h3>
+		</div>
+		<div class="slide">
+			<h3>SOA inside JVM</h3>
+		</div>
+		<div class="slide">
+			<h3>Regular POJOs</h3>
+		</div>
+		<div class="slide">
+			<h3>Dynamic</h3>
+		</div>
+	</div>
+</section>
+
+<section class="slide">
+	<h1>
+		OSGi fundamentals
+		<div style="font-size: 50%">Examples</div>
+	</h1>
+</section>
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Starting the container</h2>
+		<div class="slide">
+			<pre class="shell">
+java -jar libs/org.eclipse.osgi_3.10.100.v20141114-1343.jar -console -configuration configuration
+			</pre>
+		</div>
+		<div class="slide">
+			<h3>Take a look to the configuration file: config.ini</h3>
+			<pre class="properties">
+osgi.bundles=\
+    file:\org.apache.felix.gogo.command.jar@start,\
+    file:\org.apache.felix.gogo.runtime.jar@start,\
+    file:\org.apache.felix.gogo.shell.jar@start,\
+    file:\org.eclipse.equinox.console.jar@start
+eclipse.ignoreApp=true
+			</pre>
+		</div>
+		<div class="slide">
+			<h3>Lots of available commands</h3>
+			<pre class="shell">
+help
+			</pre>
+		</div>
+	</div>
+</section>
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Creating our first OSGi bundle</h2>
+		<div class="slide">
+			<h3>We will be using BND and Gradle</h3>
+		</div>
+		<div class="slide">
+			<h3>Simple build files</h3>
+			<pre class="shell">
+${YOUR_EDITOR} examples/001-sample-osgi-bundle/build.gradle
+${YOUR_EDITOR} examples/001-sample-osgi-bundle/bnd.bnd
+			</pre>
+		</div>
+		<div class="slide">
+			<h3>Create a valid OSGi bundle</h3>
+			<pre class="shell">
+gradle jar
+			</pre>
+		</div>
+		<div class="slide">
+			<h3>Install into the running container</h3>
+			<pre class="shell">
+install file:///${WORKSHOP_FOLDER}/examples/001-sample-osgi-bundle/build/libs/001-sample-osgi-bundle.jar
+			</pre>
+		</div>
+	</div>
+</section>
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Exporting contents (I)</h2>
+		<div class="slide">
+			<h3>Go to the folder</h3>
+			<pre class="shell">
+${WORKSHOP_FOLDER} examples/002-export-packages/002-user-manager-consumer
+			</pre>
+		</div>
+		<div class="slide">
+			<h3>And create the OSGi bundle </h3>
+			<pre class="shell">
+gradlew jar
+			</pre>
+		</div>
+		<div class="slide">
+			<h3>Install into the running container</h3>
+			<pre class="shell">
+install file:///${WORKSHOP_FOLDER}/examples/002-export-packages/002-user-manager-consumer/build/libs/002-user-manager-consumer.jar
+			</pre>
+		</div>
+		<div class="slide">
+			<h3>What happens?</h3>
+		</div>
+	</div>
+</section>
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Exporting contents (II)</h2>
+		<div class="slide">
+			<h3>Go to the folder</h3>
+			<pre class="shell">
+${WORKSHOP_FOLDER} examples/002-export-provider/002-user-manager-provider
+			</pre>
+		</div>
+		<div class="slide">
+			<h3>Edit the bnd.bnd file to export the required package</h3>
+			<pre class="shell">
+Export-Package:\
+	com.liferay.osgi.workshop.user.manager.provider
+			</pre>
+		</div>
+		<div class="slide">
+			<h3>Rebuild the OSGi bundle</h3>
+			<pre class="shell">
+gradle jar
+			</pre>
+		</div>
+		<div class="slide">
+			<h3>Install into the running container</h3>
+			<pre class="shell">
+install file:///${WORKSHOP_FOLDER}/examples/002-export-packages/002-user-manager-provider/build/libs/002-user-manager-provider.jar
+			</pre>
+		</div>
+		<div class="slide">
+			<h3>What happens?</h3>
+		</div>
+	</div>
+</section>
+
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Importing contents</h2>
+			<h3>We need to use the Import-Package directive</h3>
+			<pre class="shell">
+Import-Package:\
+	package-names
+			</pre>
+
+		<div class="slide">
+			<h3>Most of the times is not required (BND will calculate them for us)</h3>
+		</div>
+		<div class="slide">
+			<h3>Classes defined in XML files, maybe some JSPs, some fine tuning?</h3>
+		</div>
+	</div>
+</section>
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Capabilities</h2>
+		<div class="slide">
+			<h3>Declared by a resource</h3>
+		<div>
+		<div class="slide">
+			<h3>The resource is the artifact that needs to be installed in an environment and then resolved</h3>
+		</div>
+		<div class="slide">
+			<h3>Generic model to define dependencies: not only on packages</h3>
+		</div>
+		<div class="slide">
+			<h3>Good example: extender pattern</h3>
+		</div>
+		<div class="slide">
+			<h3>Provide-Capability header</h3>
+			<pre class="properties">
+Provide-Capability: liferay.extender;\
+	liferay.extender="spring.extender";\
+	version:Version="1.0"
+			</pre>
+		</div>
+<div class="slide">
+			<h3>Require-Capability header</h3>
+			<pre class="properties">
+Require-Capability:\
+	liferay.extender;\
+	filter:="(&(liferay.extender=spring.extender)(version=1.0))"
+			</pre>
+		</div>
+	</div>
+</section>
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Declarative Services</h2>
+		<div class="slide">
+			<h3>Component model that simplifies the publication/consumption of OSGi services</h2>
+		<div>
+		<ul>
+			<div class="slide">
+				<li><p>Declarative: No explicit code to publish or consume services.</p></li>
+			<div>
+			<div class="slide">
+				<li><p>Lazy: Delayed creation until requested</p></li>
+			<div>
+			<div class="slide">
+				<li><p>Lifecycle: Components have their own lifecycle</p></li>
+			<div>
+			<div class="slide">
+				<li><p>Configuration: Automatically receive configuration data</p></li>
+			<div>
+		</ul>
+		<div class="slide">
+			<h3>Definition format: xml based</h3>
+		</div>
+		<div class="slide">
+			<h3>Tools like BND promote the usage of Java annotations (we will focus on this)</h3>
+		</div>
+	</div>
+</section>
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Declarative Services: Basics (I)</h2>
+		<div class="slide">
+			<h3>How to publish a component?</h3>
+			<pre class="properties">
+@Component
+public class SimpleComponent {}
+			</pre>
+		<div>
+		<div class="slide">
+			<h3>How to consume a component?</h3>
+			<pre class="properties">
+@Component
+public class SimpleComponent {
+	@Reference
+	protected void setReference(OtherComponent otherComponent) {
+		this.otherComponent = otherComponent;
+	}
+
+	protected OtherComponent otherComponent;
+}
+			</pre>
+	</div>
+</section>
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Declarative Services: Basics (II)</h2>
+		<div class="slide">
+			<h3>How to execute code during activation?</h3>
+			<pre class="properties">
+@Component
+public class SimpleComponent {
+	@Activate
+	protected void activate() {
+
+	}
+}
+			</pre>
+		<div>
+		<div class="slide">
+			<h3>How to execute code during deactivation?</h3>
+			<pre class="properties">
+@Component
+public class SimpleComponent {
+	@Deactivate
+	protected void deactivate() {
+
+	}
+}
+			</pre>
+	</div>
+</section>
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Declarative Services: Exercices</h2>
+		<div class="slide">
+			<h3>Can a Component have optional dependencies?</h3>
+		</div>
+		<div class="slide">
+			<h3>Can a Component have mulitple dependencies on the same type?</h3>
+		</div>
+		<div class="slide">
+			<h3>What happens if the reference of a component is gone and/or modified?</h3>
+		</div>
+		<div class="slide">
+			<h3>Can a Component be configured?</h2>
+		</div>
+</section>
+
+<section class="slide" style="font-size: 100%">
+   <h1>
+    <div>OSGi patterns</div>
+    <div style="font-size: 38%">The whiteboard pattern</div>
+   </h1>
+</section>
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Whiteboard pattern: an overview</h2>
+		<div class="slide">
+			<h3>Leverages the OSGi framework’s service registry</h3>
+		</div>
+		<div class="slide">
+			<h3>Event listeners register themselves as a service with the OSGi framework</h3>
+		</div>
+		<div class="slide">
+			<h3>When the event source has an event object to deliver, the event source calls all event listeners in the service registry</h3>
+		</div>
+		<div class="slide">
+			<h3>The event source is not registered with the framework as a service</h3>
+		</div>
+		<div class="slide">
+			<h3>We will see an example while developing our Liferay app</h3>
+		</div>
+</section>
+
+<section class="slide" style="font-size: 100%">
+   <h1>
+    <div>OSGi patterns</div>
+    <div style="font-size: 38%">The extender pattern</div>
+   </h1>
+</section>
+
+<section class="slide" >
+	<div class="slide" style="margin-left:11%">
+		<h2>Extender pattern: an overview</h2>
+		<div class="slide">
+			<h3>Allows other bundles to extend the functionality in a specific domain</h3>
+		</div>
+		<div class="slide">
+			<h3>Bundles can react on the lifecycle events of other bundles</h3>
+		</div>
+		<div class="slide">
+			<h3>Based on the previous fact we can provide the right context</h3>
+		</div>
+		<div class="slide">
+			<h3>We will see an example while developing our Liferay app</h3>
+		</div>
+</section>
+
+<section class="slide" style="margin-left:11%">
+	<h2>References</h2>
+	<div class="slide"><p><a href="http://www.osgi.org/Specifications/HomePage">OSGi Specs</a></p></div>
+	<div class="slide"><p><a href="http://www.manning.com/hall/">OSGi In Action</a></p></div>
+	<div class="slide"><p><a href="http://www.manning.com/cummins/">Enterprise OSGi in Action</a></p></div>
+	<div class="slide"><p><a href="http://shop.oreilly.com/product/0636920028086.do">Building Modular Cloud Apps with OSGi</a></p></div>
+	<div class="slide"><p><a href="http://www.amazon.com/Java-Application-Architecture-Modularity-Patterns/dp/0321247132">Java Application Architecture: Modularity Patterns with Examples Using OSGI</a></p></div>
+</section>
+
+
+<!-- End slides. -->
+
+
+<!-- Begin extension snippets. Add or remove as needed. -->
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+ -->
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+</body>
+</html>

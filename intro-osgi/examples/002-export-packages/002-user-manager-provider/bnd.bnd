@@ -1,0 +1,3 @@
+Bundle-Version: 2.0.0.${tstamp}
+Export-Package:\
+	com.liferay.osgi.workshop.user.manager.provider

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: 002-export-packages.002-user-manager-provider
+Bundle-SymbolicName: 002-export-packages.002-user-manager-provider
+Bundle-Version: 1.0.0.201412291243
+Created-By: 1.8.0_05 (Oracle Corporation)
+Private-Package: com.liferay.osgi.workshop.user.manager.provider
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-2.4.0.201411031534

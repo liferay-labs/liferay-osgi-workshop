@@ -1,0 +1,5 @@
+Bundle-Version: 3.0.0.${tstamp}
+Export-Package:\
+	com.liferay.osgi.workshop.user.manager.provider
+
+-dsannotations: com.liferay.osgi.workshop.user.manager.*
