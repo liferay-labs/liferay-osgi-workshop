@@ -1,0 +1,5 @@
+Bundle-Name: Liferay Monitoring Extension
+Bundle-SymbolicName: com.liferay.monitoring.extension
+Bundle-Version: 1.0.0
+Include-Resource:\
+	classes

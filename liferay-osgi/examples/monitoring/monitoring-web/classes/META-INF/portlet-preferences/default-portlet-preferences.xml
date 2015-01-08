@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<portlet-preferences>
+	<preference>
+		<name>frequency</name>
+		<value>10000</value>
+	</preference>
+</portlet-preferences>

@@ -1,0 +1,13 @@
+Bundle-Name: Liferay Monitoring Service
+Bundle-SymbolicName: com.liferay.monitoring.service
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.monitoring.whiteboard.collector,\
+	com.liferay.monitoring.whiteboard.model
+Include-Resource:\
+	classes
+Liferay-Service: true
+Require-Capability:\
+	liferay.extender;\
+	filter:="(&(liferay.extender=spring.extender)(version=1.0))"
+Spring-Context: META-INF/*-spring.xml

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:osgi="http://www.springframework.org/schema/osgi" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd">
+	<bean id="com.liferay.monitoring.service.MetricLocalService" class="com.liferay.monitoring.service.impl.MetricLocalServiceImpl" />
+	<osgi:service interface="com.liferay.monitoring.service.MetricLocalService" ref="com.liferay.monitoring.service.MetricLocalService">
+		<osgi:service-properties>
+			<entry key="json.web.service.context.name" value="monitoring" />
+			<entry key="json.web.service.context.path" value="Metric" />
+		</osgi:service-properties>
+	</osgi:service>
+	<bean id="com.liferay.monitoring.service.MetricService" class="com.liferay.monitoring.service.impl.MetricServiceImpl" />
+	<osgi:service interface="com.liferay.monitoring.service.MetricService" ref="com.liferay.monitoring.service.MetricService">
+		<osgi:service-properties>
+			<entry key="json.web.service.context.name" value="monitoring" />
+			<entry key="json.web.service.context.path" value="Metric" />
+		</osgi:service-properties>
+	</osgi:service>
+	<bean id="com.liferay.monitoring.service.persistence.MetricPersistence" class="com.liferay.monitoring.service.persistence.impl.MetricPersistenceImpl" parent="basePersistence" />
+	<osgi:service ref="com.liferay.monitoring.service.persistence.MetricPersistence" interface="com.liferay.monitoring.service.persistence.MetricPersistence" />
+</beans>

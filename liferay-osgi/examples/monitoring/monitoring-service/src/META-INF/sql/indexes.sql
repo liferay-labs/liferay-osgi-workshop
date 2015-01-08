@@ -1,0 +1,1 @@
+create index IX_ECC1A35E on Metric (uuid_);
