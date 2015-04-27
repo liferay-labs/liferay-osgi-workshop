@@ -1,0 +1,5 @@
+Bundle-Name: Auth Public Path Example
+Bundle-SymbolicName: com.liferay.auth.public.path
+Bundle-Version: 1.0.0
+Include-Resource:\
+	classes

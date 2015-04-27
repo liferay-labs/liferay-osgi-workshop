@@ -1,0 +1,5 @@
+Bundle-Name: Calculator Json WS
+Bundle-SymbolicName: com.liferay.calculator.json.ws
+Bundle-Version: 1.0.0
+Include-Resource:\
+	classes
